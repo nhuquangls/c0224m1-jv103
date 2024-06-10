@@ -34,7 +34,6 @@ public class UserManager {
     }
 
     public void removeUser(int id) {
-        int index = -1;
         Iterator<User> iterator = USERS.iterator();
         while (iterator.hasNext()) {
             User user = iterator.next();
