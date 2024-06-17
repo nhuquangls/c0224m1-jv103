@@ -29,19 +29,18 @@ public class FileManager implements IFileManager<Staff>{
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] arrayData = line.split(",");
-                int arraySize = arrayData.length;
-                String staffType = arrayData[arraySize - 1];
+                String[] arrData = line.split(",");
+                String staffType = arrData[arrData.length - 1];
                 Staff staff = null;
 
-                if (staffType.equals("StaffOffice") && arraySize == 5) {
-                    staff = new StaffOffice(Integer.parseInt(arrayData[0]), arrayData[1], arrayData[2], arrayData[3]);
+                if (staffType.equals("StaffOffice") && arrData.length == 5) {
+                    staff = new StaffOffice(Integer.parseInt(arrData[0]), arrData[1], arrData[2], arrData[3]);
                 }
-                if (staffType.equals("StaffShipper") && arraySize == 6) {
-                    staff = new StaffShipper(Integer.parseInt(arrayData[0]), arrayData[1], arrayData[2], arrayData[3], arrayData[5]);
+                if (staffType.equals("StaffShipper") && arrData.length == 6) {
+                    staff = new StaffShipper(Integer.parseInt(arrData[0]), arrData[1], arrData[2], arrData[3], arrData[4]);
                 }
-                if (staffType.equals("StaffWorkshop") && arraySize == 6) {
-                    staff = new StaffWorkshop(Integer.parseInt(arrayData[0]), arrayData[1], arrayData[2], arrayData[3], arrayData[5]);
+                if (staffType.equals("StaffWorkshop") && arrData.length == 6) {
+                    staff = new StaffWorkshop(Integer.parseInt(arrData[0]), arrData[1], arrData[2], arrData[3], arrData[4]);
                 }
                 if (staff != null) staffList.add(staff);
             }
