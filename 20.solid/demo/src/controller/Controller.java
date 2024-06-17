@@ -1,12 +1,11 @@
 package controller;
 
-import entity.Staff;
 import manager.fileManager.FileManager;
 import manager.staffManager.StaffManager;
 
 import java.util.Scanner;
 
-public class Menu {
+public class Controller {
     private final Scanner scanner = new Scanner(System.in);
     private final StaffManager staffManager = new StaffManager();
     private final FileManager fileManager = new FileManager();
