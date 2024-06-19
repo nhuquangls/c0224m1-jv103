@@ -1,4 +1,4 @@
-package manager.staffManager;
+package manager;
 
 import entity.Staff;
 
