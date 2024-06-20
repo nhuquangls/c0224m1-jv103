@@ -1,10 +1,10 @@
 package controller;
 
 import entity.Staff;
-import strategy.StaffOfficeStrategy;
-import strategy.StaffShipperStrategy;
-import strategy.StaffStrategy;
-import strategy.StaffWorkshopStrategy;
+import filemanager.StaffOfficeStrategy;
+import filemanager.StaffShipperStrategy;
+import filemanager.StaffStrategy;
+import filemanager.StaffWorkshopStrategy;
 
 import java.io.*;
 import java.util.HashMap;

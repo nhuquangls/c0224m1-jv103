@@ -1,4 +1,4 @@
-package manager;
+package staffmanager;
 
 import entity.Staff;
 import entity.StaffShipper;

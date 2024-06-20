@@ -1,6 +1,6 @@
 package controller;
 
-import manager.StaffManager;
+import staffmanager.StaffManager;
 import ultils.KeyboardInput;
 
 public class MainController {
