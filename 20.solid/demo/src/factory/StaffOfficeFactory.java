@@ -5,7 +5,7 @@ import entity.StaffOffice;
 
 public class StaffOfficeFactory implements StaffFactory {
     @Override
-    public Staff creat(int id, String name, String phone, String role, String... extraInfo) {
+    public Staff create(int id, String name, String phone, String role, String... extraInfo) {
         return new StaffOffice(id, name, phone, role);
     }
 }

@@ -11,12 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FactoryController {
-    Map<Integer, StaffFactory> factories = new HashMap<>();
+    Map<Integer, StaffFactory> factory = new HashMap<>();
 
     public FactoryController() {
-        factories.put(1, new StaffOfficeFactory());
-        factories.put(2, new StaffShipperFactory());
-        factories.put(3, new StaffWorkshopFactory());
+        factory.put(1, new StaffOfficeFactory());
+        factory.put(2, new StaffShipperFactory());
+        factory.put(3, new StaffWorkshopFactory());
     }
 
     public Staff newStaff(int key) {
@@ -34,6 +34,6 @@ public class FactoryController {
             extraInfo = KeyboardInput.getString("Enter workshopID: ");
         }
 
-        return factories.get(key).creat(id, name, phone, role, extraInfo);
+        return factory.get(key).create(id, name, phone, role, extraInfo);
     }
 }
