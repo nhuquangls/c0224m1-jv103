@@ -1,16 +1,14 @@
-package staffmanager;
+package service;
 
 import entity.Staff;
 import entity.StaffShipper;
 import entity.StaffWorkshop;
 import ultils.KeyboardInput;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class StaffManager implements IStaffManager {
-    private final List<Staff> staffList = new ArrayList<Staff>();
+    private final List<Staff> staffList = new ArrayList<>();
 
 
     public List<Staff> getStaffList() {
@@ -19,14 +17,21 @@ public class StaffManager implements IStaffManager {
 
     @Override
     public void addStaff(Staff staff) {
-        staffList.add(staff);
-        System.out.println("Added staff");
+        if (staff != null) {
+            staffList.add(staff);
+            System.out.println("Added staff");
+        }
     }
 
     @Override
     public void updateStaff(Staff staff) {
+        if (staff == null) {
+            System.out.println("Staff not found");
+            return;
+        }
+
         editStaff(staff);
-        System.out.println("Edited staff");
+        System.out.println("Updated staff");
     }
 
     @Override
@@ -36,12 +41,7 @@ public class StaffManager implements IStaffManager {
             return;
         }
 
-        Iterator<Staff> iterator = staffList.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().getId() == staff.getId()) {
-                iterator.remove();
-            }
-        }
+        staffList.removeIf(staffInList -> staffInList.getId() == staff.getId());
         System.out.println("Removed staff");
     }
 
@@ -52,6 +52,7 @@ public class StaffManager implements IStaffManager {
         }
     }
 
+    @Override
     public Staff getStaffByID() {
         int id = KeyboardInput.getInteger("Enter ID: ");
         for (Staff staff : staffList) {
@@ -60,6 +61,17 @@ public class StaffManager implements IStaffManager {
             }
         }
         return null;
+    }
+
+    @Override
+    public void sort(int type) {
+        Comparator<Staff> comparator;
+        if (type == 1) {
+            comparator = Comparator.comparing(Staff::getId);
+        } else if (type == 2) {
+            comparator = Comparator.comparing(Staff::getName);
+        } else return;
+        staffList.sort(comparator);
     }
 
     private void editStaff(Staff staff) {

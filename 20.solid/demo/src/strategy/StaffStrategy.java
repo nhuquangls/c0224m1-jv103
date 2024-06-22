@@ -1,4 +1,4 @@
-package filemanager;
+package strategy;
 
 import entity.Staff;
 
