@@ -1,15 +1,33 @@
 package ultils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegexPattern {
-    private static final String DATE_PATTERN = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    private static final String RECORD_PATTERN = "^BA-\\d{3}$";
+    private static final String PATIENT_ID_PATTERN = "^BN-\\d{3}$";
 
     public static boolean isValidDate(String dateStr) {
-        Pattern pattern = Pattern.compile(DATE_PATTERN);
-        Matcher matcher = pattern.matcher(dateStr);
+        try {
+            DATE_FORMAT.parse(dateStr);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
+    public static boolean isValidRecordID(String recordID) {
+        Pattern pattern = Pattern.compile(RECORD_PATTERN);
+        Matcher matcher = pattern.matcher(recordID);
         return matcher.matches();
     }
 
+    public static boolean isValidPatientID(String patientID) {
+        Pattern pattern = Pattern.compile(PATIENT_ID_PATTERN);
+        Matcher matcher = pattern.matcher(patientID);
+        return matcher.matches();
+    }
 }

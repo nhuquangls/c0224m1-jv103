@@ -18,30 +18,32 @@ public class FactoryController {
     }
 
     public Patient newPatient(int type) {
-        String patientID = KeyboardInput.getString("Enter patientID: ");
-        String medicalRecordID = KeyboardInput.getString("Enter medicalRecordID: ");
-        String name = KeyboardInput.getString("Enter name: ");
-        String hospitalizedDate;
-        while (true) {
-            hospitalizedDate = KeyboardInput.getString("Enter hospitalizedDate (dd/MM/yyyy): ");
-            if (RegexPattern.isValidDate(hospitalizedDate)) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please try again.");
-            }
+        String patientID;
+        do {
+            patientID = KeyboardInput.getString("Enter patientID (BN-XXX): ");
         }
+        while (!RegexPattern.isValidPatientID(patientID));
+
+        String medicalRecordID;
+        do {
+            medicalRecordID = KeyboardInput.getString("Enter medicalRecordID (BA-XXX): ");
+        }
+        while (!RegexPattern.isValidRecordID(medicalRecordID));
+
+        String name = KeyboardInput.getString("Enter name: ");
+
+        String hospitalizedDate;
+        do {
+            hospitalizedDate = KeyboardInput.getString("Enter hospitalizedDate (dd/MM/yyyy): ");
+        }
+        while (!RegexPattern.isValidDate(hospitalizedDate));
 
 
         String dischargedDate;
-
-        while (true) {
+        do {
             dischargedDate = KeyboardInput.getString("Enter dischargedDate (dd/MM/yyyy): ");
-            if (RegexPattern.isValidDate(dischargedDate)) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please try again.");
-            }
         }
+        while (!RegexPattern.isValidDate(dischargedDate));
 
 
         String hospitalizationReason = KeyboardInput.getString("Enter hospitalizationReason: ");
@@ -53,14 +55,10 @@ public class FactoryController {
         if (type == 2) {
             extraInfo[0] = KeyboardInput.getString("Enter Vip Type: ");
 
-            while (true) {
-                extraInfo[1] = KeyboardInput.getString("Enter Expiration Date (dd/MM/yyyy): ");
-                if (RegexPattern.isValidDate(extraInfo[1])) {
-                    break;
-                } else {
-                    System.out.println("Invalid date format. Please try again.");
-                }
+            do {
+                extraInfo[1] = KeyboardInput.getString("Enter Expiration (dd/MM/yyyy): ");
             }
+            while (!RegexPattern.isValidDate(extraInfo[1]));
         }
         return factory.get(type).create(patientID, medicalRecordID, name, hospitalizedDate, dischargedDate, hospitalizationReason, extraInfo);
     }
