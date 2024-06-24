@@ -4,8 +4,8 @@ public class VIPPatient extends Patient {
     private String vipType;
     private String expirationDate;
 
-    public VIPPatient(String dischargedDate, String hospitalizationReason, String hospitalizedDate, String medicalRecordID, String name, String patientID, String expirationDate, String vipType) {
-        super(dischargedDate, hospitalizationReason, hospitalizedDate, medicalRecordID, name, patientID);
+    public VIPPatient(String patientID, String medicalRecordID, String name, String hospitalizedDate, String dischargedDate, String hospitalizationReason, String vipType, String expirationDate) {
+        super(patientID, medicalRecordID, name, hospitalizedDate, dischargedDate, hospitalizationReason);
         this.expirationDate = expirationDate;
         this.vipType = vipType;
     }
@@ -29,13 +29,13 @@ public class VIPPatient extends Patient {
     @Override
     public String toString() {
         return "VIPPatient{" +
-                "dischargedDate='" + this.getDischargedDate() + '\'' +
-                ", patientID=" + this.getPatientID() +
+                "patientID=" + this.getPatientID() +
                 ", medicalRecordID=" + this.getMedicalRecordID() +
                 ", name=" + this.getName() +
                 ", hospitalizedDate='" + this.getHospitalizedDate() + '\'' +
-                ", hospitalizationReason='" + this.getHospitalizedDate() + '\'' +
-                ",expirationDate='" + expirationDate + '\'' +
+                ", dischargedDate='" + this.getDischargedDate() + '\'' +
+                ", hospitalizationReason='" + this.getHospitalizationReason() + '\'' +
+                ", expirationDate='" + expirationDate + '\'' +
                 ", vipType='" + vipType + '\'' +
                 '}';
     }

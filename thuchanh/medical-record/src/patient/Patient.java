@@ -8,7 +8,7 @@ public abstract class Patient {
     private String dischargedDate;
     private String hospitalizationReason;
 
-    public Patient(String dischargedDate, String hospitalizationReason, String hospitalizedDate, String medicalRecordID, String name, String patientID) {
+    public Patient(String patientID, String medicalRecordID, String name, String hospitalizedDate, String dischargedDate, String hospitalizationReason) {
         this.dischargedDate = dischargedDate;
         this.hospitalizationReason = hospitalizationReason;
         this.hospitalizedDate = hospitalizedDate;

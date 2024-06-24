@@ -3,8 +3,8 @@ package patient;
 public class NormalPatient extends Patient {
     String inpatientCost;
 
-    public NormalPatient(String dischargedDate, String hospitalizationReason, String hospitalizedDate, String medicalRecordID, String name, String patientID, String inpatientCost) {
-        super(dischargedDate, hospitalizationReason, hospitalizedDate, medicalRecordID, name, patientID);
+    public NormalPatient(String patientID, String medicalRecordID, String name, String hospitalizedDate, String dischargedDate, String hospitalizationReason, String inpatientCost) {
+        super(patientID, medicalRecordID, name, hospitalizedDate, dischargedDate, hospitalizationReason);
         this.inpatientCost = inpatientCost;
     }
 
@@ -19,11 +19,11 @@ public class NormalPatient extends Patient {
     @Override
     public String toString() {
         return "NormalPatient{" +
-                "dischargedDate='" + this.getDischargedDate() + '\'' +
-                ", patientID=" + this.getPatientID() +
+                "patientID=" + this.getPatientID() +
                 ", medicalRecordID=" + this.getMedicalRecordID() +
                 ", name=" + this.getName() +
                 ", hospitalizedDate='" + this.getHospitalizedDate() + '\'' +
+                ", dischargedDate='" + this.getDischargedDate() + '\'' +
                 ", hospitalizationReason='" + this.getHospitalizationReason() + '\'' +
                 ", inpatientCost=" + inpatientCost +
                 '}';

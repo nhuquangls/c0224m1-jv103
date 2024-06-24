@@ -19,6 +19,8 @@ public class PatientManager implements IPatientManager {
 
     @Override
     public void delete(Patient patient) {
+        int choice = KeyboardInput.getInteger("Do you want to delete the patient? 1 = yes, 2 = no");
+        if (choice == 2) return;
         if (patient == null) {
             System.out.println("Patient not found");
             return;
