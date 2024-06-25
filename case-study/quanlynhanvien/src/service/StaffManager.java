@@ -1,13 +1,11 @@
 package service;
 
 import entity.Staff;
-import entity.StaffShipper;
-import entity.StaffWorkshop;
 import ultils.KeyboardInput;
 
 import java.util.*;
 
-public class StaffManager implements IStaffManager {
+public class StaffManager{
     private final List<Staff> staffList = new ArrayList<>();
 
 
@@ -15,7 +13,7 @@ public class StaffManager implements IStaffManager {
         return staffList;
     }
 
-    @Override
+
     public void addStaff(Staff staff) {
         if (staff != null) {
             staffList.add(staff);
@@ -23,18 +21,18 @@ public class StaffManager implements IStaffManager {
         }
     }
 
-    @Override
+
     public void updateStaff(Staff staff) {
         if (staff == null) {
             System.out.println("Staff not found");
             return;
         }
-
-        editStaff(staff);
+        EditManager editor = EditManager.getInstance();
+        editor.EditStaff(staff);
         System.out.println("Updated staff");
     }
 
-    @Override
+
     public void removeStaff(Staff staff) {
         if (staff == null) {
             System.out.println("Staff not found");
@@ -45,14 +43,14 @@ public class StaffManager implements IStaffManager {
         System.out.println("Removed staff");
     }
 
-    @Override
+
     public void showList() {
         for (Staff staff : staffList) {
             System.out.println(staff);
         }
     }
 
-    @Override
+
     public Staff getStaffByID() {
         int id = KeyboardInput.getInteger("Enter ID: ");
         for (Staff staff : staffList) {
@@ -63,7 +61,7 @@ public class StaffManager implements IStaffManager {
         return null;
     }
 
-    @Override
+
     public void sort(int type) {
         Comparator<Staff> comparator;
         if (type == 1) {
@@ -72,25 +70,6 @@ public class StaffManager implements IStaffManager {
             comparator = Comparator.comparing(Staff::getName);
         } else return;
         staffList.sort(comparator);
-    }
-
-    private void editStaff(Staff staff) {
-        if (staff == null) {
-            System.out.println("Staff not found");
-            return;
-        }
-
-        staff.setId(KeyboardInput.getInteger("Enter new ID: "));
-        staff.setName(KeyboardInput.getString("Enter new name: "));
-        staff.setPhone(KeyboardInput.getString("Enter new phone: "));
-        staff.setRole(KeyboardInput.getString("Enter new role: "));
-
-        if (staff instanceof StaffShipper) {
-            ((StaffShipper) staff).setCar(KeyboardInput.getString("Enter new car: "));
-        }
-        if (staff instanceof StaffWorkshop) {
-            ((StaffWorkshop) staff).setWorkshopID(KeyboardInput.getString("Enter new workshopID: "));
-        }
     }
 
 }

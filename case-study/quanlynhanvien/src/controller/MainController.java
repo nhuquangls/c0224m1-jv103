@@ -1,15 +1,16 @@
 package controller;
 
+import service.FileManager;
 import service.StaffManager;
 import ultils.KeyboardInput;
 
 public class MainController {
     private final StaffManager staffManager = new StaffManager();
     private final FactoryController factoryController = new FactoryController();
-    private final StrategyController strategyController = new StrategyController();
+    private final FileManager fileManager = FileManager.getInstance();
 
     public void showMenu() {
-        strategyController.readData(staffManager.getStaffList());
+        fileManager.readData(staffManager.getStaffList());
         int choice = -1;
         do {
             System.out.println("1. Add staff");
@@ -37,7 +38,7 @@ public class MainController {
                     sort();
                     break;
                 case 6:
-                    strategyController.writeData(staffManager.getStaffList());
+                    fileManager.writeData(staffManager.getStaffList());
                     break;
                 default:
                     System.out.println("Invalid input");
@@ -48,12 +49,12 @@ public class MainController {
 
     private void removeStaff() {
         staffManager.removeStaff(staffManager.getStaffByID());
-        strategyController.writeData(staffManager.getStaffList());
+        fileManager.writeData(staffManager.getStaffList());
     }
 
     private void editStaff() {
         staffManager.updateStaff(staffManager.getStaffByID());
-        strategyController.writeData(staffManager.getStaffList());
+        fileManager.writeData(staffManager.getStaffList());
     }
 
     private void addStaff() {

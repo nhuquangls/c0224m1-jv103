@@ -1,9 +1,9 @@
-package strategy;
+package strategy.file;
 
 import entity.Staff;
 import entity.StaffOffice;
 
-public class StaffOfficeStrategy implements StaffStrategy<Staff> {
+public class FileStaffOffice implements FileStrategy<Staff> {
 
     @Override
     public String dataToExport(Staff staff) {
@@ -12,7 +12,7 @@ public class StaffOfficeStrategy implements StaffStrategy<Staff> {
 
     @Override
     public Staff dataToImport(String[] data) {
-        if (data.length != 5) return null;
-        return new StaffOffice(Integer.parseInt(data[0]),data[1], data[2], data[3]);
+        if (data.length != 6) return null;
+        return new StaffOffice(Integer.parseInt(data[1]),data[2], data[3], data[4]);
     }
 }

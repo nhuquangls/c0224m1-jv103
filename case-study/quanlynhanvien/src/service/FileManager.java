@@ -1,22 +1,24 @@
-package controller;
+package service;
 
 import entity.Staff;
-import strategy.StaffOfficeStrategy;
-import strategy.StaffShipperStrategy;
-import strategy.StaffStrategy;
-import strategy.StaffWorkshopStrategy;
+import strategy.file.FileStaffOffice;
+import strategy.file.FileStaffShipper;
+import strategy.file.FileStrategy;
+import strategy.file.FileStaffWorkshop;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StrategyController {
+public class FileManager {
+    private static FileManager instance;
     private final String pathFile = "src/data/data.csv";
     private final File file = new File(pathFile);
-    Map<String, StaffStrategy<Staff>> strategy = new HashMap<>();
+    Map<String, FileStrategy<Staff>> strategy = new HashMap<>();
+    private int count = 0;
 
-    public StrategyController() {
+    private FileManager() {
         try {
             if (!file.exists() && file.createNewFile()) {
                 System.out.println("Created data file");
@@ -25,14 +27,23 @@ public class StrategyController {
             throw new RuntimeException(e);
         }
 
-        strategy.put("StaffOffice", new StaffOfficeStrategy());
-        strategy.put("StaffShipper", new StaffShipperStrategy());
-        strategy.put("StaffWorkshop", new StaffWorkshopStrategy());
+        strategy.put("StaffOffice", new FileStaffOffice());
+        strategy.put("StaffShipper", new FileStaffShipper());
+        strategy.put("StaffWorkshop", new FileStaffWorkshop());
+    }
+    public static FileManager getInstance() {
+        if (instance == null) {
+            instance = new FileManager();
+        }
+        return instance;
     }
 
     public void writeData(List<Staff> staffList) {
         StringBuilder data = new StringBuilder();
         for (Staff staff : staffList) {
+            count++;
+            data.append(count);
+            data.append(",");
             data.append(strategy.get(staff.getClass().getSimpleName()).dataToExport(staff));
             data.append("\n");
         }

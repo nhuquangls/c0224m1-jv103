@@ -29,16 +29,7 @@ public class FactoryController {
         String name = KeyboardInput.getString("Enter name: ");
         String phone = KeyboardInput.getString("Enter phone: ");
         String role = KeyboardInput.getString("Enter role:");
-        String extraInfo = null;
 
-        if (key == 2) {
-            extraInfo = KeyboardInput.getString("Enter car: ");
-        }
-
-        if (key == 3) {
-            extraInfo = KeyboardInput.getString("Enter workshopID: ");
-        }
-
-        return factory.get(key).create(id, name, phone, role, extraInfo);
+        return factory.get(key).create(id, name, phone, role);
     }
 }
